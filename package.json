@@ -2,7 +2,7 @@
   "name": "ecommerce-template",
   "version": "1.0.0",
   "description": "This is ecommerce template page using PostgresQL, Express, React, Node.js, GraphQL,",
-  "main": "server/server.js",
+  "main": "server/server.ts",
   "scripts": {
     "test": "npm run lint",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -12,7 +12,7 @@
     "lint": "cd server && eslint --quiet .",
     "fix": "cd server && eslint --fix .",
     "seed": "node scripts/seedDB.js",
-    "install": "cd client && npm install",
+    "install:all": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "mocha": "mocha"
@@ -30,7 +30,8 @@
   "homepage": "https://github.com/TaaniBravo/Ecommerce-Template#readme",
   "dependencies": {
     "concurrently": "^6.2.0",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "ts-node": "^10.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",
