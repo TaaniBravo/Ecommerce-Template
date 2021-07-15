@@ -1,0 +1,38 @@
+{
+  "name": "ecommerce-template",
+  "version": "1.0.0",
+  "description": "This is ecommerce template page using PostgresQL, Express, React, Node.js, GraphQL,",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "npm run lint",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node index.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
+    "mocha": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaaniBravo/Ecommerce-Template.git"
+  },
+  "keywords": [],
+  "author": "Taanileka Maama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaaniBravo/Ecommerce-Template/issues"
+  },
+  "homepage": "https://github.com/TaaniBravo/Ecommerce-Template#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0",
+    "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
