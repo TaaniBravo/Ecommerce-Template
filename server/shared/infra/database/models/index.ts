@@ -1,20 +1,11 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-"use strict";
-
-import fs from "fs";
-import path from "path";
 import { Sequelize, DataTypes } from "sequelize";
-const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 import { config } from "../config/config";
+import BaseUserInit from "./BaseUser";
 
 let sequelize;
-export const db = {
-  sequelize,
-  Sequelize
-};
 
-if (config[env].use_env_variable) {
+if (process.env.NODE_ENV === "production") {
   sequelize = new Sequelize(
     process.env[config[env].use_env_variable],
     config[env]
@@ -28,16 +19,11 @@ if (config[env].use_env_variable) {
   );
 }
 
-fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
-    db[model.name] = model;
-  });
+export const db = {
+  sequelize,
+  Sequelize,
+  BaseUser: BaseUserInit(sequelize, DataTypes)
+};
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName]?.associate) {
@@ -45,6 +31,6 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.sequelize = sequelize;
+console.log(Object.keys(db));
 
 module.exports = db;
