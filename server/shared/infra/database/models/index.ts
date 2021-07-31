@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV || "development";
 import { config } from "../config/config";
 
 let sequelize;
-const db = {
+export const db = {
   sequelize,
   Sequelize
 };
@@ -46,6 +46,5 @@ Object.keys(db).forEach(modelName => {
 });
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
-export default db;
+module.exports = db;

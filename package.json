@@ -15,7 +15,7 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "mocha": "mocha ./server/test/** --timeout 12000ms --exit"
+    "mocha": "mocha ./server/**/*.spec.ts --timeout 12000ms --exit"
   },
   "keywords": [],
   "author": "",
@@ -48,6 +48,7 @@
     "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.21",
     "@types/mocha": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
