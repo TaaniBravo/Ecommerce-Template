@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const db = require("./shared/infra/database/models");
 
 const PORT = process.env.PORT || 3001;

@@ -15,7 +15,7 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "mocha": "mocha ./server/**/*.spec.ts --timeout 12000ms --exit"
+    "mocha": "ts-mocha ./server/**/*.spec.ts --timeout 12000ms --exit"
   },
   "keywords": [],
   "author": "",
@@ -60,6 +60,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^9.0.2",
     "nodemon": "^1.18.7",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "ts-mocha": "^8.0.0"
   }
 }

@@ -18,7 +18,8 @@ export const config = {
     database: process.env.TEST_DB,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: "postgres"
+    dialect: "postgres",
+    logging: false
   },
   production: {
     use_env_variable: "JAWSDB_URL",
