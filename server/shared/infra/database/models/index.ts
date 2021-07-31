@@ -31,7 +31,5 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-console.log(Object.keys(db));
-
 module.exports = db;
 export default db;
