@@ -2,7 +2,7 @@
 process.env.NODE_ENV = "test";
 import { expect } from "chai";
 // const app from "../../../../server";
-const db = require("../../../../shared/infra/database/models");
+const db = require("../../../../../shared/infra/database/models");
 
 interface IBaseUser {
   firstName: string;
