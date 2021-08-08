@@ -20,8 +20,8 @@ class CreateUserController {
       res.status(200).json(newUser);
 
       next();
-    } catch (error) {
-      res.status(500).json(error);
+    } catch (err) {
+      res.status(500).json({ error: err.errors[0] });
     }
   }
 }

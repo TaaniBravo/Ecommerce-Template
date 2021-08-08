@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 process.env.NODE_ENV = "test";
+
 import { expect } from "chai";
-// const app from "../../../../server";
-const db = require("../../../../../shared/infra/database/models");
+import db from "../../../../../shared/infra/database/models";
 
 interface IBaseUser {
   firstName: string;
@@ -11,11 +10,12 @@ interface IBaseUser {
   password: string;
 }
 
-describe("When I create a user...", () => {
-  before(async () => {
-    await db.sequelize.sync();
-  });
+before(async () => {
+  await db.sequelize.sync();
+  await db.BaseUser.destroy({ truncate: true });
+});
 
+describe("When I create a user...", () => {
   afterEach(async () => await db.BaseUser.destroy({ truncate: true }));
 
   describe("with all valid credentials", () => {

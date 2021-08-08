@@ -21,7 +21,6 @@ const BaseUserInit = (sequelize, DataTypes) => {
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
           notEmpty: true
         }
@@ -29,6 +28,7 @@ const BaseUserInit = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           isEmail: true,
           notEmpty: true
