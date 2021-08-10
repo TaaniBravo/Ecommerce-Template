@@ -28,6 +28,7 @@ const BaseUserInit = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           isEmail: true,
           notEmpty: true
@@ -38,20 +39,10 @@ const BaseUserInit = (sequelize, DataTypes) => {
         type: DataTypes.VIRTUAL,
         set: function(val: string) {
           // Remember to set the data value, otherwise it won't be validated
-          this.setDataValue("password", val);
-          this.setDataValue("password_hash", bcrypt.hashSync(val, 10, null));
+          // this.setDataValue("password", val);
+          this.setDataValue("passwordHash", bcrypt.hashSync(val, 10, null));
         },
         is: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-        // validate: {
-        //   containsCriteria: (val: string) => {
-        //     const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        //     if (val.match(passwordRegex) !== null) {
-        //       throw new Error(
-        //         "Password must contain at least:\n - One Lowercase Letter\n - One Uppercase Letter\n - One Number\n - One Special Character"
-        //       );
-        //     }
-        //   }
-        // }
       }
     },
     {

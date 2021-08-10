@@ -1,16 +1,19 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const db = require("./shared/infra/database/models");
+import db from "./shared/infra/database/models";
+import router from "./shared/infra/routes";
 
 const PORT = process.env.PORT || 3001;
-const app = express();
+const app: express.Application = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+
+// Routes
+app.use(router);
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
@@ -18,4 +21,4 @@ db.sequelize.sync().then(() => {
   });
 });
 
-module.exports = app;
+export default app;
