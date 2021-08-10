@@ -5,16 +5,10 @@ import chaiHttp from "chai-http";
 import chaiAsPromised from "chai-as-promised";
 import app from "../../../../../server";
 import db from "../../../../../shared/infra/database/models";
+import UserObject from "../../../UserObject.type";
 
 chai.use(chaiHttp);
 chai.use(chaiAsPromised);
-
-type UserObject = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-};
 
 const sendChaiRequest = (userObject: UserObject) => {
   try {
@@ -51,34 +45,6 @@ describe("When a request is sent to ./api/user", () => {
         expect(res.body.email).to.exist;
         done();
       });
-    });
-  });
-
-  describe("but the email is already used in the db", () => {
-    before(async () => {
-      const userObject: UserObject = {
-        firstName: "firstName",
-        lastName: "lastName",
-        email: "test@test.com",
-        password: "testTest123$"
-      };
-
-      await db.BaseUser.create(userObject);
-    });
-
-    it("we should not create another user", () => {
-      try {
-        const userObject: UserObject = {
-          firstName: "firstName",
-          lastName: "lastName",
-          email: "test@test.com",
-          password: "testTest123$"
-        };
-
-        sendChaiRequest(userObject, expect(err).to.not.be.null);
-      } catch (error) {
-        console.error(error.message);
-      }
     });
   });
 });
