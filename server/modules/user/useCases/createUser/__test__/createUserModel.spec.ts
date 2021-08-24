@@ -1,16 +1,16 @@
 process.env.NODE_ENV = "test";
 
 import { expect } from "chai";
-import db from "../../../../../shared/infra/database/models";
+import DB from "../../../../../shared/infra/database/models";
 import UserObject from "../../../UserObject.type";
 
 before(async () => {
-  await db.sequelize.sync();
-  await db.BaseUser.destroy({ truncate: true });
+  await DB.sequelize.sync();
+  await DB.User.destroy({ truncate: true });
 });
 
 describe("When I try to create a user...", () => {
-  afterEach(async () => await db.BaseUser.destroy({ truncate: true }));
+  afterEach(async () => await DB.User.destroy({ truncate: true }));
 
   describe("with all valid credentials", () => {
     it("A user should be created.", async () => {
@@ -20,7 +20,7 @@ describe("When I try to create a user...", () => {
         email: "test@test.com",
         password: "testTest123$"
       };
-      const user = await db.BaseUser.create(userObject);
+      const user = await DB.User.create(userObject);
 
       expect(user).to.not.be.null;
     });
@@ -36,7 +36,7 @@ describe("When I try to create a user...", () => {
           password: "testTest123$"
         };
 
-        const user = await db.BaseUser.create(userObject);
+        const user = await DB.User.create(userObject);
         expect(user).to.be.null;
       } catch (error) {
         expect(error).to.not.be.null;
@@ -52,7 +52,7 @@ describe("When I try to create a user...", () => {
           password: "testTest123$"
         };
 
-        const user = await db.BaseUser.create(userObject);
+        const user = await DB.User.create(userObject);
         expect(user).to.be.null;
       } catch (error) {
         expect(error).to.not.be.null;
@@ -68,7 +68,7 @@ describe("When I try to create a user...", () => {
           password: "testTest123$"
         };
 
-        const user = await db.BaseUser.create(userObject);
+        const user = await DB.User.create(userObject);
         expect(user).to.be.null;
       } catch (error) {
         expect(error).to.not.be.null;
@@ -84,7 +84,7 @@ describe("When I try to create a user...", () => {
           password: "password"
         };
 
-        const user = await db.BaseUser.create(userObject);
+        const user = await DB.User.create(userObject);
         expect(user).to.be.null;
       } catch (error) {
         expect(error).to.not.be.null;
@@ -101,7 +101,7 @@ describe("When I try to create a user...", () => {
         password: "testTest123$"
       };
 
-      await db.BaseUser.create(userObject);
+      await DB.User.create(userObject);
     });
 
     it("db should not create another user", async () => {
@@ -113,7 +113,7 @@ describe("When I try to create a user...", () => {
           password: "testTest123$"
         };
 
-        await db.BaseUser.create(userObject);
+        await DB.User.create(userObject);
       } catch (error) {
         expect(error).to.not.be.null;
       }

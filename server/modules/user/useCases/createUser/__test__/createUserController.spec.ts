@@ -4,7 +4,7 @@ import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import chaiAsPromised from "chai-as-promised";
 import app from "../../../../../server";
-import db from "../../../../../shared/infra/database/models";
+import DB from "../../../../../shared/infra/database/models";
 import UserObject from "../../../UserObject.type";
 
 chai.use(chaiHttp);
@@ -23,13 +23,13 @@ const sendChaiRequest = (userObject: UserObject) => {
 };
 
 before(async () => {
-  await db.sequelize.sync();
-  await db.BaseUser.destroy({ truncate: true });
+  await DB.sequelize.sync();
+  await DB.User.destroy({ truncate: true });
 });
 
 describe("When a request is sent to ./api/user", () => {
   describe("with valid credentials", () => {
-    afterEach(async () => await db.BaseUser.destroy({ truncate: true }));
+    afterEach(async () => await DB.User.destroy({ truncate: true }));
     it("it should send back the new user.", done => {
       const userObject: UserObject = {
         firstName: "firstName",

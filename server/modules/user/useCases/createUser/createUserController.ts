@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import db from "../../../../shared/infra/database/models";
+import DB from "../../../../shared/infra/database/models";
 
 "use strict";
 
@@ -10,11 +10,13 @@ class CreateUserController {
 
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const newUser = await db.BaseUser.create({
-        firstName: "firstName",
-        lastName: "lastName",
-        email: "test@test.com",
-        password: "testTest123$"
+      const { firstName, lastName, email, password } = req.body;
+
+      const newUser = await DB.User.create({
+        firstName,
+        lastName,
+        email,
+        password
       });
 
       res.status(200).json(newUser);

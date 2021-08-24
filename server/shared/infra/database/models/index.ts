@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize/types";
 import BaseUser from "./BaseUser";
 class DB {
   public sequelize: Sequelize;
-  private User;
+  public User;
 
   constructor(sequelize, User) {
     this.sequelize = sequelize;
