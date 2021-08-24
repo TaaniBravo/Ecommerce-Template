@@ -1,35 +1,14 @@
-import { Sequelize, DataTypes } from "sequelize";
-const env = process.env.NODE_ENV || "development";
-import { config } from "../config/config";
-import BaseUserInit from "./BaseUser";
+import sequelize from "../config/config";
+import { Sequelize } from "sequelize/types";
+import BaseUser from "./BaseUser";
+class DB {
+  public sequelize: Sequelize;
+  private User;
 
-let sequelize;
-
-if (process.env.NODE_ENV === "production") {
-  sequelize = new Sequelize(
-    process.env[config[env].use_env_variable],
-    config[env]
-  );
-} else {
-  sequelize = new Sequelize(
-    config[env].database,
-    config[env].username,
-    process.env.DB_PASS || config[env].password,
-    config[env]
-  );
+  constructor(sequelize, User) {
+    this.sequelize = sequelize;
+    this.User = User;
+  }
 }
 
-export const db = {
-  sequelize,
-  Sequelize,
-  BaseUser: BaseUserInit(sequelize, DataTypes)
-};
-
-Object.keys(db).forEach(modelName => {
-  if (db[modelName]?.associate) {
-    db[modelName].associate(db);
-  }
-});
-
-module.exports = db;
-export default db;
+export default new DB(sequelize, BaseUser);

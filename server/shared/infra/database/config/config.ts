@@ -1,28 +1,23 @@
+/* eslint-disable indent */
 /* eslint-disable camelcase */
 import { config as dotenvConfig } from "dotenv";
+import { Sequelize } from "sequelize";
 
 dotenvConfig({ path: "./server/.env" });
 
-export const config = {
-  development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: "postgres"
-  },
-  test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.TEST_DB,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: "postgres",
-    logging: false
-  },
-  production: {
-    use_env_variable: "JAWSDB_URL",
-    dialect: "postgres"
-  }
-};
+// create connection to our db
+const sequelize =
+  process.env.NODE_ENV === "production"
+    ? new Sequelize(process.env.JAWSDB_URL)
+    : new Sequelize(
+        process.env.DB_NAME,
+        process.env.DB_USER,
+        process.env.DB_PW,
+        {
+          host: process.env.DB_HOST,
+          dialect: "postgres",
+          port: 5432
+        }
+      );
+
+export default sequelize;

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-const BaseUserInit = (sequelize, DataTypes) => {
+const BaseUser = (sequelize, DataTypes) => {
   const BaseUser = sequelize.define(
     "base_user",
     {
@@ -57,4 +57,4 @@ const BaseUserInit = (sequelize, DataTypes) => {
   return BaseUser;
 };
 
-export default BaseUserInit;
+export default BaseUser;
