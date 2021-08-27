@@ -1,0 +1,4 @@
+- Want to switch from Mocha to Jest for better TypeScript compatibility.
+- Need to get test_database working again with new DB class.
+- Think about the ways I can implement the DB class or if it should just house the models.
+- Finish the User model useCases.

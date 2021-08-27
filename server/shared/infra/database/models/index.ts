@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV || "development";
 import { config } from "../config/config";
 import BaseUserInit from "./BaseUser";
 
-let sequelize;
+let sequelize: Sequelize;
 
 if (process.env.NODE_ENV === "production") {
   sequelize = new Sequelize(
