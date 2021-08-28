@@ -1,11 +1,18 @@
 import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize as SequelizeType } from "sequelize/types";
 import sequelize from "../config/config";
 import BaseUserInit from "./BaseUser";
 
-export const db = {
-  sequelize,
-  Sequelize,
-  BaseUser: BaseUserInit(sequelize, DataTypes)
-};
+class PostgresDB {
+  public sequelize: SequelizeType;
+  private Sequelize;
+  public BaseUser;
 
-export default db;
+  constructor(BaseUser: CallableFunction) {
+    this.sequelize = sequelize;
+    this.Sequelize = Sequelize;
+    this.BaseUser = BaseUser(this.sequelize, DataTypes);
+  }
+}
+
+export default new PostgresDB(BaseUserInit);
