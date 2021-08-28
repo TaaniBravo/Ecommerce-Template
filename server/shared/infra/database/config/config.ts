@@ -1,28 +1,53 @@
-/* eslint-disable camelcase */
 import { config as dotenvConfig } from "dotenv";
-
+import { Sequelize } from "sequelize";
+import { Sequelize as SequelizeType } from "sequelize/types";
 dotenvConfig({ path: "./server/.env" });
+const env = process.env.NODE_ENV || "development";
 
-export const config = {
-  development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: "postgres"
-  },
-  test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.TEST_DB,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: "postgres",
-    logging: false
-  },
-  production: {
-    use_env_variable: "JAWSDB_URL",
-    dialect: "postgres"
-  }
-};
+let sequelize: SequelizeType;
+
+switch (env) {
+  case "development":
+    sequelize = new Sequelize(
+      process.env.DB_NAME,
+      process.env.DB_USER,
+      process.env.DB_PW,
+      {
+        host: "localhost",
+        dialect: "postgres",
+        port: 5432
+      }
+    );
+    break;
+  case "production":
+    sequelize = sequelize = new Sequelize(process.env.JAWSDB_URL);
+    break;
+  case "test":
+    sequelize = new Sequelize(
+      process.env.TEST_DB,
+      process.env.DB_USER,
+      process.env.DB_PW,
+      {
+        host: "localhost",
+        dialect: "postgres",
+        port: 5432,
+        logging: false
+      }
+    );
+    break;
+  default:
+    sequelize = new Sequelize(
+      process.env.DB_NAME,
+      process.env.DB_USER,
+      process.env.DB_PW,
+      {
+        host: "localhost",
+        dialect: "postgres",
+        port: 5432
+      }
+    );
+
+    break;
+}
+
+export default sequelize;
