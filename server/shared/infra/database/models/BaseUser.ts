@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 
 const BaseUserInit = (sequelize, DataTypes) => {
   const BaseUser = sequelize.define(
-    "base_user",
+    "user",
     {
       id: {
         type: DataTypes.UUID,
