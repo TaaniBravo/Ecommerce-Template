@@ -5,12 +5,12 @@ import chaiHttp from "chai-http";
 import chaiAsPromised from "chai-as-promised";
 import app from "../../../../../server";
 import db from "../../../../../shared/infra/database/models";
-import UserObject from "../../../UserObject.type";
+import UserT from "../../../UserT.type";
 
 chai.use(chaiHttp);
 chai.use(chaiAsPromised);
 
-const sendChaiRequest = (userObject: UserObject) => {
+const sendChaiRequest = (userObject: UserT) => {
   try {
     return chai
       .request(app)
@@ -31,7 +31,7 @@ describe("When a request is sent to ./api/user", () => {
   describe("with valid credentials", () => {
     afterEach(async () => await db.BaseUser.destroy({ truncate: true }));
     it("it should send back the new user.", done => {
-      const userObject: UserObject = {
+      const userObject: UserT = {
         firstName: "firstName",
         lastName: "lastName",
         email: "test@test.com",

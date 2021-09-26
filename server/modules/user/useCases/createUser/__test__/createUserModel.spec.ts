@@ -2,7 +2,7 @@ process.env.NODE_ENV = "test";
 
 import { expect } from "chai";
 import db from "../../../../../shared/infra/database/models";
-import UserObject from "../../../UserObject.type";
+import UserT from "../../../UserT.type";
 
 before(async () => {
   await db.sequelize.sync();
@@ -14,7 +14,7 @@ describe("When I try to create a user...", () => {
 
   describe("with all valid credentials", () => {
     it("A user should be created.", async () => {
-      const userObject: UserObject = {
+      const userObject: UserT = {
         firstName: "test",
         lastName: "test",
         email: "test@test.com",
@@ -29,7 +29,7 @@ describe("When I try to create a user...", () => {
   describe("with the following invalid credentials...", () => {
     it("No first name", async () => {
       try {
-        const userObject: UserObject = {
+        const userObject: UserT = {
           firstName: "",
           lastName: "test",
           email: "test@test.com",
@@ -45,7 +45,7 @@ describe("When I try to create a user...", () => {
 
     it("No last name", async () => {
       try {
-        const userObject: UserObject = {
+        const userObject: UserT = {
           firstName: "test",
           lastName: "",
           email: "test@test.com",
@@ -61,7 +61,7 @@ describe("When I try to create a user...", () => {
 
     it("A invalid email", async () => {
       try {
-        const userObject: UserObject = {
+        const userObject: UserT = {
           firstName: "test",
           lastName: "test",
           email: "testemail",
@@ -77,7 +77,7 @@ describe("When I try to create a user...", () => {
 
     it("A invalid password", async () => {
       try {
-        const userObject: UserObject = {
+        const userObject: UserT = {
           firstName: "test",
           lastName: "test",
           email: "testemail",
@@ -94,7 +94,7 @@ describe("When I try to create a user...", () => {
 
   describe("but if the email is already used in the db", () => {
     before(async () => {
-      const userObject: UserObject = {
+      const userObject: UserT = {
         firstName: "firstName",
         lastName: "lastName",
         email: "test@test.com",
@@ -106,7 +106,7 @@ describe("When I try to create a user...", () => {
 
     it("db should not create another user", async () => {
       try {
-        const userObject: UserObject = {
+        const userObject: UserT = {
           firstName: "firstName",
           lastName: "lastName",
           email: "test@test.com",
