@@ -1,3 +1,7 @@
+import { config } from 'dotenv';
+
+config({ path: "./.env" });
+
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -22,7 +26,7 @@ app.use(router);
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
-    console.log(`Server listening on PORT ${PORT} 🚀`);
+    console.log(`Server listening on http://localhost:${PORT} 🚀`);
   });
 });
 
