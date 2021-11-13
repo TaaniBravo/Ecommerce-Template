@@ -20,7 +20,7 @@
 		"@types/helmet": "^4.0.0",
 		"@types/node": "^16.4.8",
 		"@types/validator": "^13.6.3",
-		"apollo-server": "^3.3.0",
+		"apollo-server-express": "^3.5.0",
 		"axios": "^0.18.1",
 		"bcryptjs": "^2.4.3",
 		"cloudinary": "^1.25.1",
@@ -43,18 +43,10 @@
 		"@types/chai": "^4.2.21",
 		"@types/chai-http": "^4.2.0",
 		"@types/mocha": "^9.0.0",
-		"@typescript-eslint/eslint-plugin": "^4.28.5",
-		"@typescript-eslint/parser": "^4.28.5",
 		"chai": "^4.3.4",
 		"chai-as-promised": "^7.1.1",
 		"chai-http": "^4.3.0",
-		"concurrently": "^4.1.0",
-		"eslint": "^7.31.0",
-		"eslint-config-prettier": "^2.9.0",
-		"eslint-plugin-prettier": "^2.6.2",
 		"mocha": "^9.0.2",
-		"nodemon": "^1.18.7",
-		"prettier": "^1.13.7",
-		"ts-mocha": "^8.0.0"
+		"nodemon": "^1.18.7"
 	}
 }

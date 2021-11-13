@@ -2,25 +2,33 @@
 	"name": "ecommerce-template",
 	"version": "1.0.0",
 	"description": "",
-	"main": "server/server.ts",
+	"main": "server/dist/server.js",
 	"scripts": {
-		"test": "yarn lint",
-		"start": "cd server && yarn start",
-		"develop": "concurrently \"cd server && yarn watch\" \"cd client && npm start\"",
-		"install": "cd server && yarn && cd ../client && yarn",
-		"seed": "cd server && yarn seed",
 		"build": "cd client && yarn build",
-		"start:prod": "node index.js",
-		"start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn client\"",
 		"client": "cd client && yarn start",
+		"tsc": "cd server && yarn compile",
+		"develop": "concurrently \"cd server && yarn watch\" \"cd client && npm start\"",
+		"fix": "eslint --fix .",
+		"heroku-postbuild": "yarn build",
+		"install": "cd server && yarn && cd ../client && yarn",
 		"lint": "eslint --quiet .",
 		"mocha": "cd server && yarn mocha",
-		"fix": "eslint --fix .",
-		"heroku-postbuild": "yarn build"
+		"seed": "cd server && yarn seed",
+		"start": "cd server && yarn start",
+		"start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn client\"",
+		"start:prod": "node index.js",
+		"test": "yarn lint"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"concurrently": "^5.3.0"
+		"@typescript-eslint/eslint-plugin": "^4.28.5",
+		"@typescript-eslint/parser": "^4.28.5",
+		"concurrently": "^5.3.0",
+		"eslint": "^7.31.0",
+		"eslint-config-prettier": "^2.9.0",
+		"eslint-plugin-prettier": "^2.6.2",
+		"prettier": "^1.13.7",
+		"typescript": "^4.3.5"
 	}
 }

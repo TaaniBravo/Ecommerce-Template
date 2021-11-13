@@ -1,4 +1,4 @@
-import { config } from 'dotenv';
+import { config } from "dotenv";
 
 config({ path: "./.env" });
 
@@ -10,7 +10,7 @@ import router from "./shared/infra/routes";
 // import { ApolloServer } from "apollo-server-express";
 
 const PORT = process.env.PORT || 3001;
-const app: express.Application = express();
+const app = express();
 
 // const server = new ApolloServer({});
 
